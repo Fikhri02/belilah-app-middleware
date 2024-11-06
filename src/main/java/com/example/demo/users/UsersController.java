@@ -1,5 +1,5 @@
 package com.example.demo.users;
-
+import com.example.demo.carts.CartsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +31,7 @@ public class UsersController {
 
     @CrossOrigin
     @PostMapping(path = "/get-cart")
-    public Users getCarts(@RequestBody Users user)
+    public UsersDTO getCarts(@RequestBody Users user)
     {
         return usersService.getUsersCarts(user);
     }

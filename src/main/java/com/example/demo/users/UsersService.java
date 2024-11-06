@@ -33,8 +33,12 @@ public class UsersService {
         return verifiedUser.getToken();
     }
 
-    public Users getUsersCarts(Users user) {
+    public UsersDTO getUsersCarts(Users user) {
 
-        return usersRepository.findById(47L).orElseThrow(() -> new IllegalStateException("Username and Password mismatch"));
+        Users users = usersRepository.findById(47L).orElseThrow(() -> new IllegalStateException("Username and Password mismatch"));
+
+        UsersDTO usersDTO = UsersMapper.usersToUsersDTO(users);
+
+        return usersDTO;
     }
 }

@@ -2,41 +2,63 @@ package com.example.demo.carts;
 
 import com.example.demo.items.Items;
 import com.example.demo.users.Users;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
 @Table
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Carts {
 
-    @Id
-    @SequenceGenerator(
-            name="carts_id_sequence",
-            sequenceName = "carts_id_sequence",
-            allocationSize = 1
-    )
+    @EmbeddedId
+    private CartsKey id;
 
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "carts_id_sequence"
-    )
-
-    private long id;
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("itemId")
     @JoinColumn(name = "item_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Items items;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("userId")
     @JoinColumn(name = "user_id")
+    @JsonBackReference // Prevents circular reference in serialization
     private Users users;
 
-    public Items getItem(){
+    private int quantity;
+
+    // Getters and Setters
+
+    public CartsKey getId() {
+        return id;
+    }
+
+    public void setId(CartsKey id) {
+        this.id = id;
+    }
+
+    public Items getItem() {
         return this.items;
     }
 
-    public Users getUser(){
+    public void setItems(Items items) {
+        this.items = items;
+    }
+
+    public Users getUser() {
         return this.users;
     }
 
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public int getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
