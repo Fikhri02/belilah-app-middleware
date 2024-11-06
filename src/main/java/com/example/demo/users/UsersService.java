@@ -32,4 +32,9 @@ public class UsersService {
         Users verifiedUser = usersRepository.findUserByPassword(user.getFullname(), user.getPassword()).orElseThrow(() -> new IllegalStateException("Username and Password mismatch"));
         return verifiedUser.getToken();
     }
+
+    public Users getUsersCarts(Users user) {
+
+        return usersRepository.findById(47L).orElseThrow(() -> new IllegalStateException("Username and Password mismatch"));
+    }
 }

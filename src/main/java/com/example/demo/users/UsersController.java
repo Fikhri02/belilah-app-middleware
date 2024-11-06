@@ -28,4 +28,11 @@ public class UsersController {
     {
         return usersService.registerUser(user);
     }
+
+    @CrossOrigin
+    @PostMapping(path = "/get-cart")
+    public Users getCarts(@RequestBody Users user)
+    {
+        return usersService.getUsersCarts(user);
+    }
 }

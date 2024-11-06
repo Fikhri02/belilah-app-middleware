@@ -1,6 +1,10 @@
 package com.example.demo.users;
 
+import com.example.demo.carts.Carts;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table
@@ -24,6 +28,9 @@ public class Users {
     private String  fullname;
     private String password;
     private String token;
+
+    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    private List<Carts> carts;
 
 //    public Users(String fullname, String password){
 //        this.fullname = fullname;
@@ -63,6 +70,10 @@ public class Users {
     }
     public String getToken(){
         return this.token;
+    }
+
+    public List<Carts> getCarts(){
+        return this.carts;
     }
 
 }
