@@ -2,9 +2,12 @@ package com.example.demo.users;
 
 import com.example.demo.carts.Carts;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table
@@ -29,8 +32,10 @@ public class Users {
     private String password;
     private String token;
 
-    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
-    private List<Carts> carts;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToMany(mappedBy = "users", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Set<Carts> carts;
 
 //    public Users(String fullname, String password){
 //        this.fullname = fullname;
@@ -72,7 +77,7 @@ public class Users {
         return this.token;
     }
 
-    public List<Carts> getCarts(){
+    public Set<Carts> getCarts(){
         return this.carts;
     }
 

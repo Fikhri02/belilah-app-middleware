@@ -17,7 +17,7 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 //    @Query("SELECT u FROM User u LEFT JOIN FETCH u.carts c LEFT JOIN FETCH c.items WHERE u.id = :userId")
 //    Optional<Users> findByIdWithUserCarts(@Param("userId") Long userId);
 
-    @EntityGraph(attributePaths = "carts")
+    @EntityGraph(attributePaths = {"carts", "carts.items"})
     Optional<Users> findById(Long userId);
 }
 
