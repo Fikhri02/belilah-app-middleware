@@ -17,7 +17,7 @@ public class UsersController {
 
     @CrossOrigin
     @PostMapping(path = "/verify")
-    public String verifyUser(@RequestBody Users user)
+    public UsersDTO verifyUser(@RequestBody Users user)
     {
         return usersService.verifyUser(user);
     }

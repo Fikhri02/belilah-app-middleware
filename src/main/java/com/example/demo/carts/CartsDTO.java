@@ -4,17 +4,22 @@ import com.example.demo.items.Items;
 
 public class CartsDTO {
 
-    private Long id;
+    private CartsKey id;
     private int quantity;
     private Items items;
 
     CartsDTO(Carts carts){
+        this.id = carts.getId();
         this.quantity = carts.getQuantity();
         this.items = carts.getItem();
     }
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public CartsKey getId() {
+        return id;
     }
 
     public Items getItems(){

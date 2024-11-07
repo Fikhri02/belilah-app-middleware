@@ -22,20 +22,20 @@ public class UsersService {
         return user;
     }
 
-    public String verifyUser(Users user) {
+    public UsersDTO verifyUser(Users user) {
 
         System.out.println("Fullname");
-        System.out.println(user.getFullname());
+        System.out.println(user.getEmail());
         System.out.println("Password");
         System.out.println(user.getPassword());
-        Optional<Users> verifyUser = usersRepository.findUserByPassword("irfan", "1234");
-        Users verifiedUser = usersRepository.findUserByPassword(user.getFullname(), user.getPassword()).orElseThrow(() -> new IllegalStateException("Username and Password mismatch"));
-        return verifiedUser.getToken();
+//        Optional<Users> verifyUser = usersRepository.findUserByPassword("irfan", "1234");
+        Users verifiedUser = usersRepository.findUserByPassword(user.getEmail(), user.getPassword()).orElseThrow(() -> new IllegalStateException("Username and Password mismatch"));
+        return new UsersDTO(verifiedUser);
     }
 
     public UsersDTO getUsersCarts(Users user) {
 
-        Users users = usersRepository.findById(47L).orElseThrow(() -> new IllegalStateException("Username and Password mismatch"));
+        Users users = usersRepository.findCartsById(47L).orElseThrow(() -> new IllegalStateException("Username and Password mismatch"));
 
         UsersDTO usersDTO = UsersMapper.usersToUsersDTO(users);
 

@@ -19,13 +19,21 @@ public class UsersDTO {
     private Set<CartsDTO> carts;
 
     public UsersDTO(Users users){
+        this.id = users.getId();
+        this.firstName = users.getFirstName();
+        this.lastName = users.getLastName();
+        this.email = users.getEmail();
+        this.password = users.getPassword();
+        this.fullname = firstName + lastName;
+    }
+
+    public UsersDTO(Users users, Set<Carts> carts){
         this.firstName = users.getFirstName();
         this.lastName = users.getLastName();
         this.email = users.getEmail();
         this.password = users.getPassword();
         this.fullname = firstName + lastName;
         this.carts = CartMapper.cartsToCartDTO(users.getCarts());
-
     }
 
 
@@ -62,5 +70,9 @@ public class UsersDTO {
 
     public void setLastName(String lastName){
         this.lastName = lastName;
+    }
+
+    public long getId(){
+        return id;
     }
 }

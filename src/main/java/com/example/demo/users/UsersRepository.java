@@ -11,14 +11,14 @@ import java.util.Optional;
 
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Long> {
-    @Query("SELECT u from Users u where u.fullname =:users AND u.password =:password")
-    Optional<Users> findUserByPassword(@Param("users") String users, @Param("password") String password);
+    @Query("SELECT u from Users u where u.email =:email AND u.password =:password")
+    Optional<Users> findUserByPassword(@Param("email") String users, @Param("password") String password);
 
 //    @Query("SELECT u FROM User u LEFT JOIN FETCH u.carts c LEFT JOIN FETCH c.items WHERE u.id = :userId")
 //    Optional<Users> findByIdWithUserCarts(@Param("userId") Long userId);
 
     @EntityGraph(attributePaths = {"carts", "carts.items"})
-    Optional<Users> findById(Long userId);
+    Optional<Users> findCartsById(Long userId);
 }
 
 

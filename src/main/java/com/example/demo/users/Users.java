@@ -5,7 +5,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -37,6 +43,14 @@ public class Users {
     @JsonManagedReference
     private Set<Carts> carts;
 
+    @CreationTimestamp
+    @Column(updatable = false, name = "created_at")
+    private Date createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
 //    public Users(String fullname, String password){
 //        this.fullname = fullname;
 //        this.password = password;
@@ -54,6 +68,36 @@ public class Users {
     public Users(){
     }
 
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return List.of();
+//    }
+//
+//    @Override
+//    public String getUsername() {
+//        return email;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isEnabled() {
+//        return true;
+//    }
+
     public String getFullname(){
         return this.fullname;
     }
@@ -70,6 +114,10 @@ public class Users {
         return this.email;
     }
 
+    public void setEmail(String email){
+        this.email = email;
+    }
+
     public String getPassword(){
         return this.password;
     }
@@ -81,4 +129,7 @@ public class Users {
         return this.carts;
     }
 
+    public long getId() {
+        return id;
+    }
 }
