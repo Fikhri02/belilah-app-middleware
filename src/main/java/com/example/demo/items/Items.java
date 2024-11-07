@@ -76,4 +76,7 @@ public class Items {
         return averageReview;
     }
 
+    public long getId(){
+        return id;
+    }
 }

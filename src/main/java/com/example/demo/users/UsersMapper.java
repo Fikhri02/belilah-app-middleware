@@ -9,6 +9,6 @@ import org.mapstruct.factory.Mappers;
 public class UsersMapper {
 
     static UsersDTO usersToUsersDTO(Users users){
-        return new UsersDTO(users);
+        return new UsersDTO(users, users.getCarts());
     }
 }
