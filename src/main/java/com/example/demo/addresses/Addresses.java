@@ -37,8 +37,6 @@ public class Addresses {
     private String label;
     private boolean isActive;
 
-    @Transient
-    private long cUserId;
 
     public long getId() {
         return id;
@@ -81,11 +79,13 @@ public class Addresses {
         this.users = users;
     }
 
-    public long getcUserId() {
-        return cUserId;
+
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
-    public void setcUserId(long cUserId) {
-        this.cUserId = cUserId;
+    public boolean isActive() {
+        return isActive;
     }
 }

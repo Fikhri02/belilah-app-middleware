@@ -15,11 +15,11 @@ public class AddressesController {
         this.addressesService = addressesService;
     }
 
-    @CrossOrigin
-    @PostMapping(path = "/add-address")
-    public Addresses addUserAddress(@RequestBody Addresses addresses)
-    {
-        return addressesService.addAddressToUser(addresses);
-    }
+//    @CrossOrigin
+//    @PostMapping(path = "/add-address")
+//    public Addresses addUserAddress(@RequestBody Addresses addresses)
+//    {
+//        return addressesService.addAddressToUser(addresses);
+//    }
 
 }
