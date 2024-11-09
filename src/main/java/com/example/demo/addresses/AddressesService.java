@@ -20,12 +20,12 @@ public class AddressesService {
         this.usersRepository = usersRepository;
     }
 
-    @Transactional
-    public Addresses addAddressToUser(Addresses addresses){
-        Users users = usersRepository.findById(addresses.getcUserId()).orElseThrow(() -> new EntityNotFoundException("User not found"));;
-        addresses.setUsers(users);
-
-        addressesRepository.save(addresses);
-        return addresses;
-    }
+//    @Transactional
+//    public Addresses addAddressToUser(Addresses addresses){
+//        Users users = usersRepository.findById(addresses.getcUserId()).orElseThrow(() -> new EntityNotFoundException("User not found"));;
+//        addresses.setUsers(users);
+//
+//        addressesRepository.save(addresses);
+//        return addresses;
+//    }
 }
