@@ -45,5 +45,14 @@ public class CartsService {
                 })
                 .collect(Collectors.toList());// Collect and return the updated carts
     }
+
+    @Transactional
+    public void deleteCartById(Long itemId, Long userId) {
+        CartsKey cartId = new CartsKey(itemId, userId);
+        if (!cartsRepository.existsById(cartId)) {
+            throw new IllegalArgumentException("Cart not found with Item ID: " + itemId + " and User ID: " + userId);
+        }
+        cartsRepository.deleteById(cartId);
+    }
 }
 

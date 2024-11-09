@@ -1,5 +1,6 @@
 package com.example.demo.users;
 
+import com.example.demo.addresses.Addresses;
 import com.example.demo.carts.Carts;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -37,11 +38,17 @@ public class Users {
     private String  fullname;
     private String password;
     private String token;
+    private String phoneNumber;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany(mappedBy = "users", fetch = FetchType.LAZY)
     @JsonManagedReference
     private Set<Carts> carts;
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JsonManagedReference
+    private Set<Addresses> addresses;
 
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
@@ -98,8 +105,13 @@ public class Users {
 //        return true;
 //    }
 
+    //region Getters
     public String getFullname(){
         return this.fullname;
+    }
+
+    public String getPhoneNumber(){
+        return this.phoneNumber;
     }
 
     public String getFirstName(){
@@ -113,7 +125,9 @@ public class Users {
     public String getEmail(){
         return this.email;
     }
+    //endregion
 
+    //region Setters
     public void setEmail(String email){
         this.email = email;
     }
@@ -132,4 +146,21 @@ public class Users {
     public long getId() {
         return id;
     }
+
+    public Set<Addresses> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(Set<Addresses> addresses){
+        this.addresses = addresses;
+    }
+
+    public void setPhoneNumber(String phoneNumber){
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setFullname(String fullname){
+        this.fullname = fullname;
+    }
+    //endregion
 }
