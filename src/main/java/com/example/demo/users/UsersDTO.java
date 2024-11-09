@@ -1,4 +1,5 @@
 package com.example.demo.users;
+import com.example.demo.addresses.Addresses;
 import com.example.demo.carts.CartMapper;
 import com.example.demo.carts.Carts;
 import com.example.demo.carts.CartsDTO;
@@ -15,8 +16,11 @@ public class UsersDTO {
     private String  fullname;
     private String password;
     private String token;
+    private String phoneNumber;
 
     private Set<CartsDTO> carts;
+
+    private Set<Addresses> addresses;
 
     public UsersDTO(Users users){
         this.id = users.getId();
@@ -24,7 +28,9 @@ public class UsersDTO {
         this.lastName = users.getLastName();
         this.email = users.getEmail();
         this.password = users.getPassword();
-        this.fullname = firstName + lastName;
+        this.fullname = users.getFullname();
+        this.addresses = users.getAddresses();
+        this.phoneNumber = users.getPhoneNumber();
     }
 
     public UsersDTO(Users users, Set<Carts> carts){
@@ -32,7 +38,8 @@ public class UsersDTO {
         this.lastName = users.getLastName();
         this.email = users.getEmail();
         this.password = users.getPassword();
-        this.fullname = firstName + lastName;
+        this.fullname = users.getFullname();
+        this.phoneNumber = users.getPhoneNumber();
         this.carts = CartMapper.cartsToCartDTO(users.getCarts());
     }
 
@@ -75,4 +82,13 @@ public class UsersDTO {
     public long getId(){
         return id;
     }
+
+    public Set<Addresses> getAddresses(){
+        return addresses;
+    }
+
+    public String getPhoneNumber(){
+        return phoneNumber;
+    }
+
 }

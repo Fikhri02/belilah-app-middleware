@@ -24,4 +24,12 @@ public class ItemsController {
         return itemsService.getAll();
     }
 
+    @CrossOrigin
+    @GetMapping(path = "/find-name")
+    public List<Items> findByName(@RequestParam String name)
+    {
+        return itemsService.findByName(name);
+    }
+
+
 }

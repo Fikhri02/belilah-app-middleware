@@ -10,6 +10,13 @@ public class CartsKey implements Serializable {
     private Long itemId;
     private Long userId;
 
+    CartsKey(long itemId, long userId){
+        this.itemId = itemId;
+        this.userId = userId;
+    }
+
+    CartsKey(){};
+
     // Getters, Setters, equals, and hashCode methods
 
     public Long getItemId() {

@@ -24,8 +24,7 @@ public class UsersController {
 
     @CrossOrigin
     @PostMapping(path = "/register")
-    public Users registerUser(@RequestBody Users user)
-    {
+    public Users registerUser(@RequestBody Users user) throws Exception {
         return usersService.registerUser(user);
     }
 
@@ -34,5 +33,12 @@ public class UsersController {
     public UsersDTO getCarts(@RequestBody Users user)
     {
         return usersService.getUsersCarts(user);
+    }
+
+    @CrossOrigin
+    @PutMapping(path = "/update-user")
+    public UsersDTO updateUser(@RequestBody Users user)
+    {
+        return usersService.updateUser(user);
     }
 }

@@ -18,4 +18,8 @@ public class ItemsService {
     public List<Items> getAll(){
         return itemsRepository.findAll();
     }
+
+    public List<Items> findByName(String name){
+        return itemsRepository.findByDescriptionContainingIgnoreCase(name).orElseThrow(()->new IllegalStateException("No Items Found"));
+    }
 }
